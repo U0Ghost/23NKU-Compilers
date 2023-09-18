@@ -1,0 +1,72 @@
+
+;; Function printf (printf, funcdef_no=15, decl_uid=964, cgraph_uid=16, symbol_order=15)
+
+
+
+ local analysis of printf/15
+   scanning: _4 = __printf_chk (1, __fmt_2(D), __builtin_va_arg_pack ());
+  scanning: return _4;
+Function is locally looping.
+Function can locally free.
+__attribute__((artificial, gnu_inline, always_inline))
+__attribute__((nonnull (1), format (printf, 1, 2)))
+int printf (const char * restrict __fmt)
+{
+  int _4;
+
+  <bb 2> [local count: 1073741824]:
+  _4 = __printf_chk (1, __fmt_2(D), __builtin_va_arg_pack ());
+  return _4;
+
+}
+
+
+
+;; Function main (main, funcdef_no=23, decl_uid=2545, cgraph_uid=24, symbol_order=23) (executed once)
+
+
+
+ local analysis of main/23
+   scanning: scanf ("%d", &n);
+  scanning: f_11 = i_2 * f_3;
+  scanning: i_12 = i_2 + 1;
+  scanning: n.0_1 = n;
+  scanning: if (n.0_1 >= i_2)
+  scanning: __printf_chk (1, "%d", f_6);
+  scanning: n ={v} {CLOBBER};
+  scanning: return 0;
+Function is locally looping.
+Function can locally free.
+int main ()
+{
+  int f;
+  int n;
+  int i;
+  int n.0_1;
+
+  <bb 2> [local count: 118111600]:
+  scanf ("%d", &n);
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 955630225]:
+  f_11 = i_2 * f_3;
+  i_12 = i_2 + 1;
+
+  <bb 4> [local count: 1073741824]:
+  # i_2 = PHI <2(2), i_12(3)>
+  # f_3 = PHI <1(2), f_11(3)>
+  n.0_1 = n;
+  if (n.0_1 >= i_2)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 5>; [11.00%]
+
+  <bb 5> [local count: 118111600]:
+  # f_6 = PHI <f_3(4)>
+  __printf_chk (1, "%d", f_6);
+  n ={v} {CLOBBER};
+  return 0;
+
+}
+
+

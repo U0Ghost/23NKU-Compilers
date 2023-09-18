@@ -1,0 +1,266 @@
+
+;; Function main (main, funcdef_no=23, decl_uid=2545, cgraph_uid=24, symbol_order=23) (executed once)
+
+Points-to analysis
+
+Constraints:
+
+ANYTHING = &ANYTHING
+ESCAPED = *ESCAPED
+ESCAPED = ESCAPED + UNKNOWN
+*ESCAPED = NONLOCAL
+NONLOCAL = &NONLOCAL
+NONLOCAL = &ESCAPED
+INTEGER = &ANYTHING
+ESCAPED = &STRING
+ESCAPED = &n
+n.0_12 = n
+i_13 = i_9
+i_13 = &NONLOCAL
+f_14 = f_8
+f_14 = &NONLOCAL
+f_8 = i_13 + UNKNOWN
+f_8 = f_14 + UNKNOWN
+i_9 = i_13 + UNKNOWN
+i_9 = &NONLOCAL
+f_15 = f_8
+f_15 = &NONLOCAL
+ESCAPED = &NONLOCAL
+ESCAPED = &STRING
+ESCAPED = f_15
+
+Collapsing static cycles and doing variable substitution
+Building predecessor graph
+Detecting pointer and location equivalences
+
+
+// The constraint graph before var-substitution in dot format:
+strict digraph {
+  node [
+    shape = box
+  ]
+  edge [
+    fontsize = "12"
+  ]
+
+  // List of nodes and complex constraints in the constraint graph:
+"NULL";
+"ANYTHING"[label="ANYTHING = { 2 }"];
+"STRING";
+"ESCAPED"[label="ESCAPED = { 3 5 8 }"];
+"NONLOCAL"[label="NONLOCAL = { 4 5 }"];
+"STOREDANYTHING";
+"INTEGER"[label="INTEGER = { 2 }"];
+"n";
+"*__isoc99_scanf";
+"n.0_12";
+"i_13"[label="i_13 = { 5 }"];
+"i_9"[label="i_9 = { 5 }"];
+"f_14"[label="f_14 = { 5 }"];
+"f_8";
+"f_15"[label="f_15 = { 5 }"];
+"__printf_chk";
+"main";
+"*NULL";
+"*ANYTHING";
+"*STRING";
+"*ESCAPED";
+"*NONLOCAL";
+"*STOREDANYTHING";
+"*INTEGER";
+"*n";
+"**__isoc99_scanf";
+"*n.0_12";
+"*i_13";
+"*i_9";
+"*f_14";
+"*f_8";
+"*f_15";
+"*__printf_chk";
+"*main";
+
+  // Edges in the constraint graph:
+"f_15" -> "ESCAPED";
+"*ESCAPED" -> "ESCAPED";
+"n" -> "n.0_12";
+"i_9" -> "i_13";
+"f_8" -> "f_14";
+"f_8" -> "f_15";
+"NONLOCAL" -> "*ESCAPED";
+}
+
+
+Rewriting constraints and unifying variables
+Uniting pointer but not location equivalent variables
+Finding indirect cycles
+
+
+// The constraint graph before solve-graph in dot format:
+strict digraph {
+  node [
+    shape = box
+  ]
+  edge [
+    fontsize = "12"
+  ]
+
+  // List of nodes and complex constraints in the constraint graph:
+"NULL";
+"ANYTHING";
+"STRING";
+"ESCAPED" [label="\N\nESCAPED = ESCAPED + UNKNOWN\lESCAPED = *ESCAPED\l*ESCAPED = NONLOCAL\l"];
+"NONLOCAL";
+"STOREDANYTHING";
+"INTEGER";
+"*__isoc99_scanf";
+"n.0_12";
+"i_13" [label="\N\ni_13 = i_13 + UNKNOWN\lf_8 = i_13 + UNKNOWN\l"];
+"f_14" [label="\N\nf_8 = f_14 + UNKNOWN\l"];
+"f_8";
+"__printf_chk";
+"main";
+
+  // Edges in the constraint graph:
+"STOREDANYTHING" -> "ESCAPED";
+"STOREDANYTHING" -> "n.0_12";
+"STOREDANYTHING" -> "i_13";
+"STOREDANYTHING" -> "f_8";
+"f_14" -> "ESCAPED";
+"f_8" -> "f_14";
+}
+
+
+Solving graph
+
+
+// The constraint graph after solve-graph in dot format:
+strict digraph {
+  node [
+    shape = box
+  ]
+  edge [
+    fontsize = "12"
+  ]
+
+  // List of nodes and complex constraints in the constraint graph:
+"NULL";
+"ANYTHING";
+"STRING";
+"ESCAPED" [label="\N\nESCAPED = ESCAPED + UNKNOWN\lESCAPED = *ESCAPED\l*ESCAPED = NONLOCAL\l"];
+"NONLOCAL";
+"STOREDANYTHING";
+"INTEGER";
+"*__isoc99_scanf";
+"n.0_12";
+"i_13" [label="\N\ni_13 = i_13 + UNKNOWN\lf_8 = i_13 + UNKNOWN\l"];
+"f_14" [label="\N\nf_8 = f_14 + UNKNOWN\l"];
+"f_8";
+"__printf_chk";
+"main";
+
+  // Edges in the constraint graph:
+"NONLOCAL" -> "ESCAPED";
+"NONLOCAL" -> "n.0_12";
+"STOREDANYTHING" -> "ESCAPED";
+"STOREDANYTHING" -> "n.0_12";
+"STOREDANYTHING" -> "i_13";
+"STOREDANYTHING" -> "f_8";
+"n.0_12" -> "ESCAPED";
+"f_14" -> "ESCAPED";
+"f_8" -> "f_14";
+}
+
+
+
+Points-to sets
+
+ANYTHING = { ANYTHING }
+ESCAPED = { STRING ESCAPED NONLOCAL n }
+NONLOCAL = { ESCAPED NONLOCAL }
+STOREDANYTHING = { }
+INTEGER = { ANYTHING }
+n = { ESCAPED NONLOCAL } same as n.0_12
+*__isoc99_scanf = { }
+n.0_12 = { ESCAPED NONLOCAL }
+i_13 = { NONLOCAL }
+i_9 = { NONLOCAL } same as i_13
+f_14 = { NONLOCAL }
+f_8 = { NONLOCAL }
+f_15 = { NONLOCAL } same as f_14
+__printf_chk = { }
+main = { }
+
+
+Alias information for main
+
+Aliased symbols
+
+n, UID D.2548, int, is addressable
+
+Call clobber information
+
+ESCAPED, points-to non-local, points-to vars: { D.2548 } (escaped)
+
+Flow-insensitive points-to information
+
+
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 5 3 6 4
+;;
+;; Loop 1
+;;  header 3, latch 6
+;;  depth 1, outer 0
+;;  nodes: 3 6
+;; 2 succs { 5 4 }
+;; 5 succs { 3 }
+;; 3 succs { 6 4 }
+;; 6 succs { 3 }
+;; 4 succs { 1 }
+int main ()
+{
+  int f;
+  int n;
+  int i;
+  int n.0_12;
+
+  <bb 2> [local count: 118111600]:
+  scanf ("%d", &n);
+  n.0_12 = n;
+  if (n.0_12 > 1)
+    goto <bb 5>; [89.00%]
+  else
+    goto <bb 7>; [11.00%]
+
+  <bb 5> [local count: 105119324]:
+
+  <bb 3> [local count: 955630225]:
+  # i_13 = PHI <i_9(6), 2(5)>
+  # f_14 = PHI <f_8(6), 1(5)>
+  f_8 = i_13 * f_14;
+  i_9 = i_13 + 1;
+  if (i_9 <= n.0_12)
+    goto <bb 6>; [89.00%]
+  else
+    goto <bb 8>; [11.00%]
+
+  <bb 8> [local count: 105119324]:
+  goto <bb 4>; [100.00%]
+
+  <bb 6> [local count: 850510901]:
+  goto <bb 3>; [100.00%]
+
+  <bb 7> [local count: 12992276]:
+
+  <bb 4> [local count: 118111600]:
+  # f_15 = PHI <f_8(8), 1(7)>
+  __printf_chk (1, "%d", f_15);
+  n ={v} {CLOBBER};
+  return 0;
+
+}
+
+

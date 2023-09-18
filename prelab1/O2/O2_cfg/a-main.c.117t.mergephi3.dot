@@ -1,0 +1,53 @@
+digraph "a-main.c.117t.mergephi3" {
+overlap=false;
+subgraph "cluster_main" {
+	style="dashed";
+	color="black";
+	label="main ()";
+	subgraph cluster_23_1 {
+	style="filled";
+	color="darkgreen";
+	fillcolor="grey88";
+	label="loop 1";
+	labeljust=l;
+	penwidth=2;
+	fn_23_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{COUNT:1073741824\<bb\ 4\>:\l\
+|#\ i_2\ =\ PHI\ \<2(2),\ i_9(3)\>\l\
+|#\ f_3\ =\ PHI\ \<1(2),\ f_8(3)\>\l\
+|n.0_1\ =\ n;\l\
+|if\ (n.0_1\ \>=\ i_2)\l\
+\ \ goto\ \<bb\ 3\>;\ [89.00%]\l\
+else\l\
+\ \ goto\ \<bb\ 5\>;\ [11.00%]\l\
+}"];
+
+	fn_23_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{COUNT:955630225\<bb\ 3\>:\l\
+|f_8\ =\ f_3\ *\ i_2;\l\
+|i_9\ =\ i_2\ +\ 1;\l\
+}"];
+
+	}
+	fn_23_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_23_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_23_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{COUNT:118111600\<bb\ 2\>:\l\
+|scanf\ (\"%d\",\ &n);\l\
+goto\ \<bb\ 4\>;\ [100.00%]\l\
+}"];
+
+	fn_23_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{COUNT:118111600\<bb\ 5\>:\l\
+|__printf_chk\ (1,\ \"%d\",\ f_3);\l\
+|n\ =\{v\}\ \{CLOBBER\};\l\
+|return\ 0;\l\
+}"];
+
+	fn_23_basic_block_0:s -> fn_23_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true,label="[100%]"];
+	fn_23_basic_block_2:s -> fn_23_basic_block_4:n [style="solid,bold",color=blue,weight=100,constraint=true,label="[100%]"];
+	fn_23_basic_block_3:s -> fn_23_basic_block_4:n [style="dotted,bold",color=blue,weight=10,constraint=false,label="[100%]"];
+	fn_23_basic_block_4:s -> fn_23_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true,label="[89%]"];
+	fn_23_basic_block_4:s -> fn_23_basic_block_5:n [style="solid,bold",color=black,weight=10,constraint=true,label="[11%]"];
+	fn_23_basic_block_5:s -> fn_23_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true,label="[100%]"];
+	fn_23_basic_block_0:s -> fn_23_basic_block_1:n [style="invis",constraint=true];
+}
+}

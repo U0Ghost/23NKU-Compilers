@@ -1,0 +1,73 @@
+
+;; Function main (main, funcdef_no=23, decl_uid=2545, cgraph_uid=24, symbol_order=23) (executed once)
+
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5
+;;
+;; Loop 1
+;;  header 4, latch 3
+;;  depth 1, outer 0
+;;  nodes: 4 3
+;; 2 succs { 4 }
+;; 3 succs { 4 }
+;; 4 succs { 3 5 }
+;; 5 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+i_6 -> { i_2 }
+f_11 -> { f_3 }
+n.0_12 -> { n.0_1 }
+i_13 -> { i_2 }
+f_14 -> { f_3 }
+f_15 -> { f_3 }
+Incremental SSA update started at block: 6
+Number of blocks in CFG: 9
+Number of blocks to update: 6 ( 67%)
+
+
+Merging blocks 2 and 6
+Merging blocks 3 and 4
+Removing basic block 7
+Removing basic block 8
+int main ()
+{
+  int f;
+  int n;
+  int i;
+  int n.0_1;
+  int n.0_12;
+
+  <bb 2> [local count: 118111600]:
+  scanf ("%d", &n);
+  n.0_12 = n;
+  if (n.0_12 > 1)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 4>; [11.00%]
+
+  <bb 3> [local count: 955630225]:
+  # i_13 = PHI <i_9(3), 2(2)>
+  # f_14 = PHI <f_8(3), 1(2)>
+  f_8 = f_14 * i_13;
+  i_9 = i_13 + 1;
+  n.0_1 = n;
+  if (n.0_1 >= i_9)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 4>; [11.00%]
+
+  <bb 4> [local count: 118111600]:
+  # f_15 = PHI <f_8(3), 1(2)>
+  __printf_chk (1, "%d", f_15);
+  n ={v} {CLOBBER};
+  return 0;
+
+}
+
+

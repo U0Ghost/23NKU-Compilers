@@ -1,0 +1,344 @@
+pre:
+gcc main.c -E -o main.i
+#预处理将头文件进行文本替换。生成main.i
+
+lexer:
+clang -E -Xclang -dump-tokens main.c
+#由于引入了stdio.h头文件，因此词法分析输出的首部为stddef.h/types.h/stdio.h等的词法分析。而后直到词法分析末尾，才对main.c进行相应的分析。
+
+#...前面省略...
+extern 'extern'	 [StartOfLine]	Loc=</usr/include/stdio.h:858:1>
+int 'int'	 [LeadingSpace]	Loc=</usr/include/stdio.h:858:8>
+identifier '__uflow'	 [LeadingSpace]	Loc=</usr/include/stdio.h:858:12>
+l_paren '('	 [LeadingSpace]	Loc=</usr/include/stdio.h:858:20>
+identifier 'FILE'		Loc=</usr/include/stdio.h:858:21>
+star '*'	 [LeadingSpace]	Loc=</usr/include/stdio.h:858:26>
+r_paren ')'		Loc=</usr/include/stdio.h:858:27>
+semi ';'		Loc=</usr/include/stdio.h:858:28>
+extern 'extern'	 [StartOfLine]	Loc=</usr/include/stdio.h:859:1>
+int 'int'	 [LeadingSpace]	Loc=</usr/include/stdio.h:859:8>
+identifier '__overflow'	 [LeadingSpace]	Loc=</usr/include/stdio.h:859:12>
+l_paren '('	 [LeadingSpace]	Loc=</usr/include/stdio.h:859:23>
+identifier 'FILE'		Loc=</usr/include/stdio.h:859:24>
+star '*'	 [LeadingSpace]	Loc=</usr/include/stdio.h:859:29>
+comma ','		Loc=</usr/include/stdio.h:859:30>
+int 'int'	 [LeadingSpace]	Loc=</usr/include/stdio.h:859:32>
+r_paren ')'		Loc=</usr/include/stdio.h:859:35>
+semi ';'		Loc=</usr/include/stdio.h:859:36>
+int 'int'	 [StartOfLine]	Loc=<main.c:2:1>
+identifier 'main'	 [LeadingSpace]	Loc=<main.c:2:5>
+l_paren '('		Loc=<main.c:2:9>
+r_paren ')'		Loc=<main.c:2:10>
+l_brace '{'	 [StartOfLine]	Loc=<main.c:3:1>
+int 'int'	 [StartOfLine] [LeadingSpace]	Loc=<main.c:4:2>
+identifier 'i'	 [LeadingSpace]	Loc=<main.c:4:6>
+comma ','		Loc=<main.c:4:7>
+identifier 'n'	 [LeadingSpace]	Loc=<main.c:4:9>
+comma ','		Loc=<main.c:4:10>
+identifier 'f'	 [LeadingSpace]	Loc=<main.c:4:12>
+semi ';'		Loc=<main.c:4:13>
+identifier 'scanf'	 [StartOfLine] [LeadingSpace]	Loc=<main.c:5:2>
+l_paren '('		Loc=<main.c:5:7>
+string_literal '"%d"'		Loc=<main.c:5:8>
+comma ','		Loc=<main.c:5:12>
+amp '&'	 [LeadingSpace]	Loc=<main.c:5:14>
+identifier 'n'		Loc=<main.c:5:15>
+r_paren ')'		Loc=<main.c:5:16>
+semi ';'		Loc=<main.c:5:17>
+identifier 'i'	 [StartOfLine] [LeadingSpace]	Loc=<main.c:6:2>
+equal '='	 [LeadingSpace]	Loc=<main.c:6:4>
+numeric_constant '2'	 [LeadingSpace]	Loc=<main.c:6:6>
+semi ';'		Loc=<main.c:6:7>
+identifier 'f'	 [StartOfLine] [LeadingSpace]	Loc=<main.c:7:2>
+equal '='	 [LeadingSpace]	Loc=<main.c:7:4>
+numeric_constant '1'	 [LeadingSpace]	Loc=<main.c:7:6>
+semi ';'		Loc=<main.c:7:7>
+while 'while'	 [StartOfLine] [LeadingSpace]	Loc=<main.c:8:2>
+l_paren '('	 [LeadingSpace]	Loc=<main.c:8:8>
+identifier 'i'		Loc=<main.c:8:9>
+lessequal '<='	 [LeadingSpace]	Loc=<main.c:8:11>
+identifier 'n'	 [LeadingSpace]	Loc=<main.c:8:14>
+r_paren ')'		Loc=<main.c:8:15>
+l_brace '{'	 [StartOfLine] [LeadingSpace]	Loc=<main.c:9:2>
+identifier 'f'	 [StartOfLine] [LeadingSpace]	Loc=<main.c:10:3>
+equal '='	 [LeadingSpace]	Loc=<main.c:10:5>
+identifier 'f'	 [LeadingSpace]	Loc=<main.c:10:7>
+star '*'	 [LeadingSpace]	Loc=<main.c:10:9>
+identifier 'i'	 [LeadingSpace]	Loc=<main.c:10:11>
+semi ';'		Loc=<main.c:10:12>
+identifier 'i'	 [StartOfLine] [LeadingSpace]	Loc=<main.c:11:3>
+equal '='	 [LeadingSpace]	Loc=<main.c:11:5>
+identifier 'i'	 [LeadingSpace]	Loc=<main.c:11:7>
+plus '+'	 [LeadingSpace]	Loc=<main.c:11:9>
+numeric_constant '1'	 [LeadingSpace]	Loc=<main.c:11:11>
+semi ';'		Loc=<main.c:11:12>
+r_brace '}'	 [StartOfLine] [LeadingSpace]	Loc=<main.c:12:2>
+identifier 'printf'	 [StartOfLine] [LeadingSpace]	Loc=<main.c:13:2>
+l_paren '('		Loc=<main.c:13:8>
+string_literal '"%d"'		Loc=<main.c:13:9>
+comma ','		Loc=<main.c:13:13>
+identifier 'f'	 [LeadingSpace]	Loc=<main.c:13:15>
+r_paren ')'		Loc=<main.c:13:16>
+semi ';'		Loc=<main.c:13:17>
+r_brace '}'	 [StartOfLine]	Loc=<main.c:14:1>
+eof ''		Loc=<main.c:14:2>
+
+	
+
+
+
+
+# 生成`main.c.003t.original`
+ast-gcc:
+gcc -fdump-tree-original-raw main.c
+
+
+;; Function main (null)
+;; enabled by -tree-original
+
+@1      statement_list   0   : @2       1   : @3      
+@2      bind_expr        type: @4       vars: @5       body: @6      
+@3      return_expr      type: @4       expr: @7      
+@4      void_type        name: @8       algn: 8       
+@5      var_decl         name: @9       type: @10      scpe: @11     
+                         srcp: main.c:4                size: @12     
+                         algn: 32       used: 1       
+@6      statement_list   0   : @13      1   : @14      2   : @15     
+                         3   : @16      4   : @17      5   : @18     
+                         6   : @19      7   : @20      8   : @21     
+                         9   : @22      10  : @23      11  : @24     
+                         12  : @25      13  : @26     
+@7      modify_expr      type: @10      op 0: @27      op 1: @28     
+@8      type_decl        name: @29      type: @4      
+@9      identifier_node  strg: i        lngt: 1       
+@10     integer_type     name: @30      size: @12      algn: 32      
+                         prec: 32       sign: signed   min : @31     
+                         max : @32     
+@11     function_decl    name: @33      type: @34      srcp: main.c:2      
+                         link: extern  
+@12     integer_cst      type: @35     int: 32
+@13     decl_expr        type: @4      
+@14     decl_expr        type: @4      
+@15     decl_expr        type: @4      
+@16     call_expr        type: @10      fn  : @36      0   : @37     
+                         1   : @38     
+@17     modify_expr      type: @10      op 0: @5       op 1: @39     
+@18     modify_expr      type: @10      op 0: @40      op 1: @41     
+@19     goto_expr        type: @4       labl: @42     
+@20     label_expr       type: @4       name: @43     
+@21     modify_expr      type: @10      op 0: @40      op 1: @44     
+@22     modify_expr      type: @10      op 0: @5       op 1: @45     
+@23     label_expr       type: @4       name: @42     
+@24     cond_expr        type: @4       op 0: @46      op 1: @47     
+                         op 2: @48     
+@25     label_expr       type: @4       name: @49     
+@26     call_expr        type: @10      fn  : @50      0   : @51     
+                         1   : @40     
+@27     result_decl      type: @10      scpe: @11      srcp: main.c:2      
+                         note: artificial              size: @12     
+                         algn: 32      
+@28     integer_cst      type: @10     int: 0
+@29     identifier_node  strg: void     lngt: 4       
+@30     type_decl        name: @52      type: @10     
+@31     integer_cst      type: @10     int: -2147483648
+@32     integer_cst      type: @10     int: 2147483647
+@33     identifier_node  strg: main     lngt: 4       
+@34     function_type    unql: @53      size: @54      algn: 8       
+                         retn: @10     
+@35     integer_type     name: @55      size: @56      algn: 128     
+                         prec: 128      sign: unsigned min : @57     
+                         max : @58     
+@36     addr_expr        type: @59      op 0: @60     
+@37     nop_expr         type: @61      op 0: @62     
+@38     addr_expr        type: @63      op 0: @64     
+@39     integer_cst      type: @10     int: 2
+@40     var_decl         name: @65      type: @10      scpe: @11     
+                         srcp: main.c:4                size: @12     
+                         algn: 32       used: 1       
+@41     integer_cst      type: @10     int: 1
+@42     label_decl       type: @4       scpe: @11      note: artificial 
+@43     label_decl       type: @4       scpe: @11      note: artificial 
+@44     mult_expr        type: @10      op 0: @40      op 1: @5      
+@45     plus_expr        type: @10      op 0: @5       op 1: @41     
+@46     le_expr          type: @10      op 0: @5       op 1: @64     
+@47     goto_expr        type: @4       labl: @43     
+@48     goto_expr        type: @4       labl: @49     
+@49     label_decl       type: @4       scpe: @11      note: artificial 
+@50     addr_expr        type: @66      op 0: @67     
+@51     nop_expr         type: @61      op 0: @68     
+@52     identifier_node  strg: int      lngt: 3       
+@53     function_type    size: @54      algn: 8        retn: @10     
+@54     integer_cst      type: @35     int: 8
+@55     identifier_node  strg: bitsizetype             lngt: 11      
+@56     integer_cst      type: @35     int: 128
+@57     integer_cst      type: @35     int: 0
+@58     integer_cst      type: @35     int: -1
+@59     pointer_type     size: @69      algn: 64       ptd : @70     
+@60     function_decl    name: @71      mngl: @72      type: @70     
+                         srcp: stdio.h:410             args: @73     
+                         body: undefined               link: extern  
+@61     pointer_type     qual:   r      unql: @74      size: @69     
+                         algn: 64       ptd : @75     
+@62     addr_expr        type: @76      op 0: @77     
+@63     pointer_type     size: @69      algn: 64       ptd : @10     
+@64     var_decl         name: @78      type: @10      scpe: @11     
+                         srcp: main.c:4                size: @12     
+                         algn: 32       used: 1       
+@65     identifier_node  strg: f        lngt: 1       
+@66     pointer_type     size: @69      algn: 64       ptd : @79     
+@67     function_decl    name: @80      type: @79      srcp: stdio.h:332    
+                         args: @81      body: undefined 
+                         link: extern  
+@68     addr_expr        type: @76      op 0: @82     
+@69     integer_cst      type: @35     int: 64
+@70     function_type    size: @54      algn: 8        retn: @10     
+                         prms: @83     
+@71     identifier_node  strg: scanf    lngt: 5       
+@72     identifier_node  strg: *__isoc99_scanf         lngt: 15      
+@73     parm_decl        name: @84      type: @61      srcp: stdio.h:397    
+                         argt: @61      size: @69      algn: 64      
+                         used: 0       
+@74     pointer_type     size: @69      algn: 64       ptd : @75     
+@75     integer_type     qual: c        name: @85      unql: @86     
+                         size: @54      algn: 8        prec: 8       
+                         sign: signed   min : @87      max : @88     
+@76     pointer_type     size: @69      algn: 64       ptd : @89     
+@77     string_cst       type: @89     strg: %d       lngt: 3       
+@78     identifier_node  strg: n        lngt: 1       
+@79     function_type    size: @54      algn: 8        retn: @10     
+                         prms: @83     
+@80     identifier_node  strg: printf   lngt: 6       
+@81     parm_decl        name: @84      type: @61      srcp: stdio.h:332    
+                         argt: @61      size: @69      algn: 64      
+                         used: 0       
+@82     string_cst       type: @89     strg: %d       lngt: 3       
+@83     tree_list        valu: @61     
+@84     identifier_node  strg: __format lngt: 8       
+@85     type_decl        name: @90      type: @86     
+@86     integer_type     name: @85      size: @54      algn: 8       
+                         prec: 8        sign: signed   min : @87     
+                         max : @88     
+@87     integer_cst      type: @86     int: -128
+@88     integer_cst      type: @86     int: 127
+@89     array_type       size: @91      algn: 8        elts: @86     
+                         domn: @92     
+@90     identifier_node  strg: char     lngt: 4       
+@91     integer_cst      type: @35     int: 24
+@92     integer_type     size: @69      algn: 64       prec: 64      
+                         sign: signed   min : @93      max : @94     
+@93     integer_cst      type: @95     int: 0
+@94     integer_cst      type: @95     int: 2
+@95     integer_type     name: @96      size: @69      algn: 64      
+                         prec: 64       sign: unsigned min : @93     
+                         max : @97     
+@96     identifier_node  strg: sizetype lngt: 8       
+@97     integer_cst      type: @95     int: -1
+
+
+
+
+
+# 生成`main.ll`
+ast-llvm:
+clang -E -Xclang -ast-dump main.c
+
+#这一部分同样是头文件-main函数的格式。
+
+
+# 会生成多个阶段的文件(.dot)，可以被graphviz 可视化，可以直接使用vscode 插件（注：给出的dot类似流程图）
+# (Graphviz (dot) language support for Visual Studio Code)。
+# 此时的可读性还很强。`main.c.011t.cfg.dot`
+cfg:
+gcc -O0 -fdump-tree-all-graph main.c
+
+# 此时可读性不好，简要了解各阶段更迭过程即可。
+ir-gcc:
+gcc -O0 -fdump-rtl-all-graph main.c
+
+
+
+#llvm 需要解释 待做
+ir-llvm:
+clang -S -emit-llvm main.c
+
+asm:
+gcc -O0 -o main.S -S -masm=att main.i
+
+obj:
+gcc -O0 -c -o main.o main.S
+
+
+
+# 用objdump分析.o二进制文件，其对应的是如下的汇编代码：
+# objdump -d main.o
+
+main.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:	f3 0f 1e fa          	endbr64 
+   4:	55                   	push   %rbp
+   5:	48 89 e5             	mov    %rsp,%rbp
+   8:	48 83 ec 20          	sub    $0x20,%rsp
+   c:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  13:	00 00 
+  15:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+  19:	31 c0                	xor    %eax,%eax
+  1b:	48 8d 45 ec          	lea    -0x14(%rbp),%rax
+  1f:	48 89 c6             	mov    %rax,%rsi
+  22:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 29 <main+0x29>
+  29:	b8 00 00 00 00       	mov    $0x0,%eax
+  2e:	e8 00 00 00 00       	callq  33 <main+0x33>
+  33:	c7 45 f0 02 00 00 00 	movl   $0x2,-0x10(%rbp)
+  3a:	c7 45 f4 01 00 00 00 	movl   $0x1,-0xc(%rbp)
+  41:	eb 0e                	jmp    51 <main+0x51>
+  43:	8b 45 f4             	mov    -0xc(%rbp),%eax
+  46:	0f af 45 f0          	imul   -0x10(%rbp),%eax
+  4a:	89 45 f4             	mov    %eax,-0xc(%rbp)
+  4d:	83 45 f0 01          	addl   $0x1,-0x10(%rbp)
+  51:	8b 45 ec             	mov    -0x14(%rbp),%eax
+  54:	39 45 f0             	cmp    %eax,-0x10(%rbp)
+  57:	7e ea                	jle    43 <main+0x43>
+  59:	8b 45 f4             	mov    -0xc(%rbp),%eax
+  5c:	89 c6                	mov    %eax,%esi
+  5e:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 65 <main+0x65>
+  65:	b8 00 00 00 00       	mov    $0x0,%eax
+  6a:	e8 00 00 00 00       	callq  6f <main+0x6f>
+  6f:	b8 00 00 00 00       	mov    $0x0,%eax
+  74:	48 8b 55 f8          	mov    -0x8(%rbp),%rdx
+  78:	64 48 33 14 25 28 00 	xor    %fs:0x28,%rdx
+  7f:	00 00 
+  81:	74 05                	je     88 <main+0x88>
+  83:	e8 00 00 00 00       	callq  88 <main+0x88>
+  88:	c9                   	leaveq 
+  89:	c3                   	retq
+
+#用nm分析.o文件二进制代码，得到的结果如下：
+
+nm main.o > main-nm-obj.txt
+
+
+                 U _GLOBAL_OFFSET_TABLE_
+                 U __isoc99_scanf
+0000000000000000 T main
+                 U printf
+                 U __stack_chk_fail
+
+
+exe:
+gcc -O0 -o main main.o
+
+objdump -d main > main-anti-exe.S
+nm main > main-nm-exe.txt
+
+# 可执行文件相比于.o文件增加了头尾部分，这部分的代码的含义还待考。包括init .plt _start printf scanf等代码块，猜测是把使用到的函数的汇编代码包含进去了。
+
+
+clean:
+rm -rf *.c.*
+50
+51 clean-all:
+52 rm -rf *.c.* *.o *.S *.dot *.out *.txt *.ll *.i main
+44 antiexe:

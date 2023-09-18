@@ -1,0 +1,83 @@
+
+;; Function main (main, funcdef_no=23, decl_uid=2545, cgraph_uid=24, symbol_order=23) (executed once)
+
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5
+;;
+;; Loop 1
+;;  header 4, latch 3
+;;  depth 1, outer 0
+;;  nodes: 4 3
+;; 2 succs { 4 }
+;; 3 succs { 4 }
+;; 4 succs { 3 5 }
+;; 5 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+f_6 -> { f_3 }
+Incremental SSA update started at block: 4
+Number of blocks in CFG: 6
+Number of blocks to update: 3 ( 50%)
+
+
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+i_11 -> { i_2 }
+Incremental SSA update started at block: 4
+Number of blocks in CFG: 6
+Number of blocks to update: 2 ( 33%)
+
+
+
+Value ranges after VRP:
+
+n.0_1: int VARYING
+i_2: int [2, +INF]
+f_3: int VARYING
+f_6: int [f_3, f_3]
+f_8: int VARYING
+i_9: int [3, +INF]
+i_11: int [-INF, n.0_1]  EQUIVALENCES: { i_2 } (1 elements)
+
+
+int main ()
+{
+  int f;
+  int n;
+  int i;
+  int n.0_1;
+
+  <bb 2> [local count: 118111600]:
+  scanf ("%d", &n);
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 955630225]:
+  f_8 = f_3 * i_2;
+  i_9 = i_2 + 1;
+
+  <bb 4> [local count: 1073741824]:
+  # i_2 = PHI <2(2), i_9(3)>
+  # f_3 = PHI <1(2), f_8(3)>
+  n.0_1 = n;
+  if (n.0_1 >= i_2)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 5>; [11.00%]
+
+  <bb 5> [local count: 118111600]:
+  # f_6 = PHI <f_3(4)>
+  __printf_chk (1, "%d", f_6);
+  n ={v} {CLOBBER};
+  return 0;
+
+}
+
+

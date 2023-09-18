@@ -1,0 +1,71 @@
+28 ssa "unused VAR_DECLs removed" "main" 1
+42 fre "RPO blocks" "printf" 1
+42 fre "RPO iterations == 10" "printf" 1
+42 fre "RPO blocks visited" "printf" 1
+42 fre "RPO blocks executable" "printf" 1
+42 fre "RPO block visited times == 1" "printf" 1
+42 fre "RPO num avail == 1" "printf" 1
+42 fre "RPO num values == 3" "printf" 1
+42 fre "RPO num lattice == 3" "printf" 1
+37 ccp "Constants propagated" "main" 1
+37 ccp "Statements deleted" "main" 3
+42 fre "RPO num lattice == 9" "main" 1
+42 fre "RPO blocks" "main" 4
+42 fre "RPO num values == 9" "main" 1
+42 fre "RPO blocks visited" "main" 6
+42 fre "RPO iterations == 15" "main" 1
+42 fre "RPO blocks executable" "main" 4
+42 fre "RPO block visited times == 1" "main" 2
+42 fre "RPO block visited times == 2" "main" 2
+42 fre "RPO num avail == 6" "main" 1
+43 evrp "Incremental SSA update" "main" 1
+56 release_ssa "SSA names released" "main" 4
+56 release_ssa "SSA name holes removed" "main" 4
+112 fre "RPO blocks" "main" 4
+112 fre "RPO num values == 8" "main" 1
+112 fre "RPO blocks visited" "main" 6
+112 fre "RPO iterations == 15" "main" 1
+112 fre "RPO blocks executable" "main" 4
+112 fre "RPO block visited times == 1" "main" 2
+112 fre "RPO block visited times == 2" "main" 2
+112 fre "RPO num avail == 5" "main" 1
+112 fre "RPO num lattice == 8" "main" 1
+115 vrp "Incremental SSA update" "main" 2
+115 vrp "Number of ASSERT_EXPR expressions inserted" "main" 1
+120 copyprop "Copies propagated" "main" 1
+120 copyprop "Statements deleted" "main" 1
+125 ch "RPO blocks" "main" 2
+125 ch "RPO iterations == 10" "main" 1
+125 ch "Incremental SSA update" "main" 1
+125 ch "RPO blocks visited" "main" 2
+125 ch "RPO blocks executable" "main" 2
+125 ch "RPO block visited times == 1" "main" 2
+125 ch "RPO num avail == 1" "main" 1
+125 ch "RPO num values == 3" "main" 1
+125 ch "RPO num lattice == 3" "main" 1
+125 ch "Eliminated" "main" 2
+129 dom "Copies propagated" "main" 1
+129 dom "Redundant expressions eliminated" "main" 1
+130 copyprop "Statements deleted" "main" 1
+143 pre "RPO num lattice == 9" "main" 1
+143 pre "RPO blocks" "main" 7
+143 pre "RPO num values == 9" "main" 1
+143 pre "RPO iterations == 12" "main" 1
+143 pre "RPO blocks visited" "main" 9
+143 pre "RPO blocks executable" "main" 7
+143 pre "RPO block visited times == 1" "main" 5
+143 pre "RPO block visited times == 2" "main" 2
+143 pre "insert iterations == 1" "main" 1
+143 pre "RPO num avail == 6" "main" 1
+143 pre "compute_antic iterations == 2" "main" 1
+151 loopinit "Incremental SSA update" "main" 1
+192 fre "RPO num avail == 9" "main" 1
+192 fre "RPO blocks" "main" 4
+192 fre "RPO num lattice == 12" "main" 1
+192 fre "RPO iterations == 10" "main" 1
+192 fre "RPO blocks visited" "main" 4
+192 fre "RPO num values == 12" "main" 1
+192 fre "RPO blocks executable" "main" 4
+192 fre "RPO block visited times == 1" "main" 4
+197 vrp "Incremental SSA update" "main" 1
+197 vrp "Number of ASSERT_EXPR expressions inserted" "main" 2
